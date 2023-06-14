@@ -1,6 +1,6 @@
-let language = "catalan"
+// let language = "catalan"
 
-if(language == "english") {
+// if(language == "english") {
     const sentences = [
         "I must not hold a bring your pet rock to school day",
         "I will not enroll the school hampster in a Tai Chi class",
@@ -23,30 +23,32 @@ if(language == "english") {
         "I will not replace all pencils with giant lollipops",
         "I must not organize a whistling performance during assembly",
       ];
-} else if(language == "catalan") {
-    const sentences = [
-        "No he d'agafar una penya per portar la teva mascota a l'escola",
-        "No matriculare l'hamster de l'escola en una classe de Tai-txi",
-        "No he d'organitzar una excursio a la lluna",
-        "No he de convencer els meus companys que soc un viatger en el temps",
-        "No canviare l'alarma d'incendi de l'escola per una gravacio del meu riure",
-        "No aixafare els principis perque despres culpare als extraterrestres",
-        "No he de portar un barret mes alt que l'escola el dia del barret boig",
-        "No substituire tots els escriptoris per llits elastics",
-        "No he d'aplicar politiques com ara pizza obligatoria per dinar",
-        "No he de seure en un puf durant la classe i despres fer migdiades a l'atzar",
-        "No muntare un castell inflable durant la quimica",
-        "No he de convertir el menjador de l'escola en una discoteca",
-        "No substituire tots els llibres de text per llibres per pintar",
-        "No he d'ensenyar calcul als esquirols",
-        "No posare un cactus a la cadira del professor",
-        "No declarare la biblioteca escolar com a zona de prohibicio de lectura",
-        "No he de substituir la font d'aigua per un dispensador de llet de xocolata",
-        "No substituire tots els llibres de text per comics",
-        "No substituire tots els llapis per piruletes gegants",
-        "No he d'organitzar una actuacio de xiulets durant el muntatge",
-      ];
-}
+} 
+
+// if(language == "catalan") {
+//     const sentences = [
+//         "No he d'agafar una penya per portar la teva mascota a l'escola",
+//         "No matriculare l'hamster de l'escola en una classe de Tai-txi",
+//         "No he d'organitzar una excursio a la lluna",
+//         "No he de convencer els meus companys que soc un viatger en el temps",
+//         "No canviare l'alarma d'incendi de l'escola per una gravacio del meu riure",
+//         "No aixafare els principis perque despres culpare als extraterrestres",
+//         "No he de portar un barret mes alt que l'escola el dia del barret boig",
+//         "No substituire tots els escriptoris per llits elastics",
+//         "No he d'aplicar politiques com ara pizza obligatoria per dinar",
+//         "No he de seure en un puf durant la classe i despres fer migdiades a l'atzar",
+//         "No muntare un castell inflable durant la quimica",
+//         "No he de convertir el menjador de l'escola en una discoteca",
+//         "No substituire tots els llibres de text per llibres per pintar",
+//         "No he d'ensenyar calcul als esquirols",
+//         "No posare un cactus a la cadira del professor",
+//         "No declarare la biblioteca escolar com a zona de prohibicio de lectura",
+//         "No he de substituir la font d'aigua per un dispensador de llet de xocolata",
+//         "No substituire tots els llibres de text per comics",
+//         "No substituire tots els llapis per piruletes gegants",
+//         "No he d'organitzar una actuacio de xiulets durant el muntatge",
+//       ];
+// }
   
 let currentSentence = "";
 
