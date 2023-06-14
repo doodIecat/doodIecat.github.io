@@ -1,6 +1,6 @@
 let language = "catalan"
 
-if(language = "english") {
+if(language == "english") {
     const sentences = [
         "I must not hold a bring your pet rock to school day",
         "I will not enroll the school hampster in a Tai Chi class",
@@ -23,7 +23,7 @@ if(language = "english") {
         "I will not replace all pencils with giant lollipops",
         "I must not organize a whistling performance during assembly",
       ];
-} else if(language = "catalan") {
+} else if(language == "catalan") {
     const sentences = [
         "No he d'agafar una penya per portar la teva mascota a l'escola",
         "No matriculare l'hamster de l'escola en una classe de Tai-txi",
