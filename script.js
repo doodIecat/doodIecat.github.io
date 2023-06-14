@@ -40,11 +40,11 @@ if(language = "english") {
         "No substituiré tots els llibres de text per llibres per pintar",
         "No he d'ensenyar càlcul als esquirols",
         "No posaré un cactus a la cadira del professor",
-        "I will not declare the school libary a no read zone",
-        "I must not replace the water fountain with a chocolate milk dispenser",
-        "I will not replace all textbooks with comics",
-        "I will not replace all pencils with giant lollipops",
-        "I must not organize a whistling performance during assembly",
+        "No declararé la biblioteca escolar com a zona de prohibició de lectura",
+        "No he de substituir la font d'aigua per un dispensador de llet de xocolata",
+        "No substituiré tots els llibres de text per còmics",
+        "No substituiré tots els llapis per piruletes gegants",
+        "No he d'organitzar una actuació de xiulets durant el muntatge",
       ];
 }
   
@@ -124,6 +124,8 @@ if(language = "english") {
       handleKeyPress({ target: inputElement });
     } else if (key === "Control") {
       isCtrlKeyPressed = true;
+    } else if (key === "'") {
+      inputElement.value += "'";
     }
   });
   
