@@ -23,7 +23,7 @@ body {
   font-family: 'Doodles', sans-serif;
 }
 
-#doodled-link {
+#doodlecat-link {
   font-family: 'Doodles', sans-serif;
   font-size: 18pt;
   position: absolute;
@@ -33,7 +33,7 @@ body {
   color: black;
 }
 
-#doodled-link:hover {
+#doodlecat-link:hover {
   text-decoration: underline;
   text-decoration-thickness: 2px;
 }
