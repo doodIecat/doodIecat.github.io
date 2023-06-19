@@ -1,31 +1,94 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>doodled.fun</title>
-    <link id="favicon" rel="icon" type="image/x-icon" href="faviconlight.ico">
-    <link rel="stylesheet" type="text/css" href="lines.css">
+  <title>Cat Game</title>
+  <style>
+    #game-container {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      border: 1px solid black;
+    }
+
+    #cat {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100px;
+      height: 100px;
+    }
+
+    .item {
+      position: absolute;
+      top: 150px;
+      width: 50px;
+      height: 50px;
+    }
+  </style>
 </head>
 <body>
-    <div id="container">
-        <div id="text"></div>
-        <a id="doodled-link" href="https://doodled.fun">DOODLED.FUN</a>
-    </div>
-    <script src="lines.js"></script>
-    <script>
-        const favicon = document.getElementById('favicon');
-        const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        
-        function updateFavicon() {
-            if (darkModeMediaQuery.matches) {
-                favicon.href = 'favicondark.ico';
-            } else {
-                favicon.href = 'faviconlight.ico';
-            }
+  <div id="game-container">
+    <img id="cat" src="cat.png">
+  </div>
+
+  <script>
+    var cat = document.getElementById('cat');
+    var container = document.getElementById('game-container');
+    var containerRect = container.getBoundingClientRect();
+    var isJumping = false;
+    var jumpHeight = 100;
+    var jumpDuration = 500;
+
+    function jump() {
+      if (!isJumping) {
+        isJumping = true;
+        var start = null;
+        var startY = cat.getBoundingClientRect().top;
+
+        function jumpStep(timestamp) {
+          if (!start) start = timestamp;
+          var progress = timestamp - start;
+          var distance = progress / jumpDuration * jumpHeight;
+
+          if (progress < jumpDuration) {
+            var y = startY - distance;
+            cat.style.top = Math.max(containerRect.height - cat.height, y) + 'px';
+            window.requestAnimationFrame(jumpStep);
+          } else {
+            isJumping = false;
+          }
         }
-        
-        updateFavicon();
-        
-        darkModeMediaQuery.addEventListener('change', updateFavicon);
-    </script>
+
+        window.requestAnimationFrame(jumpStep);
+      }
+    }
+
+    document.addEventListener('keydown', function(event) {
+      if (event.code === 'Space') {
+        jump();
+      }
+    });
+
+    function createItem() {
+      var item = document.createElement('img');
+      item.src = 'garbage.png';
+      item.className = 'item';
+      item.style.left = containerRect.width + 'px';
+
+      container.appendChild(item);
+
+      var itemMoveInterval = setInterval(function() {
+        var left = parseInt(item.style.left);
+        if (left < -item.width) {
+          clearInterval(itemMoveInterval);
+          container.removeChild(item);
+        } else {
+          item.style.left = (left - 5) + 'px';
+        }
+      }, 20);
+    }
+
+    setInterval(createItem, 2000);
+  </script>
 </body>
 </html>
