@@ -1,103 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cat Game</title>
-  <style>
-    html, body {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
+    <title>Dino Jump Game</title>
+    <style>
+        #game-container {
+            width: 400px;
+            height: 200px;
+            border: 1px solid black;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
 
-    #game-container {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      border: 1px solid black;
-    }
+        #dino {
+            width: 50px;
+            height: 50px;
+            background-color: #000;
+            position: absolute;
+            bottom: 0;
+        }
 
-    #cat {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100px;
-      height: 120px;
-    }
+        #obstacle {
+            width: 20px;
+            height: 100px;
+            background-color: #f00;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            animation: moveObstacle 2s infinite linear;
+        }
 
-    .item {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 50px;
-      height: 50px;
-    }
-  </style>
+        @keyframes moveObstacle {
+            0% {
+                right: 0;
+            }
+            100% {
+                right: 400px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div id="game-container">
-    <img id="cat" src="cat.png">
-  </div>
+    <h1>Dino Jump Game</h1>
+    <div id="game-container">
+        <div id="dino"></div>
+        <div id="obstacle"></div>
+    </div>
+    <script>
+        document.addEventListener('keydown', jump);
 
-  <script>
-    var cat = document.getElementById('cat');
-    var container = document.getElementById('game-container');
-    var containerRect = container.getBoundingClientRect();
-    var isJumping = false;
-    var jumpHeight = 150;
-    var jumpDuration = 600;
-
-    function jump() {
-      if (!isJumping) {
-        isJumping = true;
-        var start = null;
-        var startY = cat.getBoundingClientRect().top;
-
-        function jumpStep(timestamp) {
-          if (!start) start = timestamp;
-          var progress = timestamp - start;
-          var distance = progress / jumpDuration * jumpHeight;
-
-          if (progress < jumpDuration) {
-            var y = startY - distance;
-            cat.style.top = Math.max(containerRect.height - cat.height, y) + 'px';
-            window.requestAnimationFrame(jumpStep);
-          } else {
-            isJumping = false;
-          }
+        function jump(event) {
+            if (event.keyCode === 32) { // Space key
+                var dino = document.getElementById('dino');
+                dino.style.animation = 'jump 0.5s';
+                setTimeout(function () {
+                    dino.style.animation = '';
+                }, 500);
+            }
         }
-
-        window.requestAnimationFrame(jumpStep);
-      }
-    }
-
-    document.addEventListener('keydown', function(event) {
-      if (event.code === 'Space') {
-        jump();
-      }
-    });
-
-    function createItem() {
-      var item = document.createElement('img');
-      item.src = 'garbage.png';
-      item.className = 'item';
-      item.style.bottom = 0;
-      item.style.right = 0;
-
-      container.appendChild(item);
-
-      var itemMoveInterval = setInterval(function() {
-        var bottom = parseInt(item.style.bottom);
-        if (bottom > containerRect.height) {
-          clearInterval(itemMoveInterval);
-          container.removeChild(item);
-        } else {
-          item.style.bottom = (bottom + 5) + 'px';
-        }
-      }, 20);
-    }
-
-    setInterval(createItem, 2000);
-  </script>
+    </script>
 </body>
 </html>
