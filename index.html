@@ -3,10 +3,17 @@
 <head>
   <title>Cat Game</title>
   <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
     #game-container {
       position: relative;
-      width: 400px;
-      height: 400px;
+      width: 100%;
+      height: 100%;
       border: 1px solid black;
     }
 
@@ -15,12 +22,13 @@
       left: 0;
       bottom: 0;
       width: 100px;
-      height: 100px;
+      height: 120px;
     }
 
     .item {
       position: absolute;
-      top: 150px;
+      bottom: 0;
+      right: 0;
       width: 50px;
       height: 50px;
     }
@@ -36,8 +44,8 @@
     var container = document.getElementById('game-container');
     var containerRect = container.getBoundingClientRect();
     var isJumping = false;
-    var jumpHeight = 100;
-    var jumpDuration = 500;
+    var jumpHeight = 150;
+    var jumpDuration = 600;
 
     function jump() {
       if (!isJumping) {
@@ -73,17 +81,18 @@
       var item = document.createElement('img');
       item.src = 'garbage.png';
       item.className = 'item';
-      item.style.left = containerRect.width + 'px';
+      item.style.bottom = 0;
+      item.style.right = 0;
 
       container.appendChild(item);
 
       var itemMoveInterval = setInterval(function() {
-        var left = parseInt(item.style.left);
-        if (left < -item.width) {
+        var bottom = parseInt(item.style.bottom);
+        if (bottom > containerRect.height) {
           clearInterval(itemMoveInterval);
           container.removeChild(item);
         } else {
-          item.style.left = (left - 5) + 'px';
+          item.style.bottom = (bottom + 5) + 'px';
         }
       }, 20);
     }
