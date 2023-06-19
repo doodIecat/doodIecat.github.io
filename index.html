@@ -3,13 +3,18 @@
 <head>
     <title>Dino Jump Game</title>
     <style>
-        #game-container {
-            width: 400px;
-            height: 200px;
-            border: 1px solid black;
-            position: relative;
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
             overflow: hidden;
-            margin: 0 auto;
+        }
+        
+        #game-container {
+            width: 100%;
+            height: 100%;
+            background-color: #f9f9f9;
+            position: relative;
         }
 
         #dino {
@@ -18,6 +23,7 @@
             background-color: #000;
             position: absolute;
             bottom: 0;
+            transition: transform 0.2s;
         }
 
         #obstacle {
@@ -35,7 +41,7 @@
                 right: 0;
             }
             100% {
-                right: 400px;
+                right: 100%;
             }
         }
     </style>
@@ -47,14 +53,16 @@
         <div id="obstacle"></div>
     </div>
     <script>
+        var dino = document.getElementById('dino');
+        
         document.addEventListener('keydown', jump);
+        document.addEventListener('touchstart', jump);
 
         function jump(event) {
-            if (event.keyCode === 32) { // Space key
-                var dino = document.getElementById('dino');
-                dino.style.animation = 'jump 0.5s';
+            if (event.keyCode === 32 || event.type === 'touchstart') { // Space key or touch event
+                dino.style.transform = 'translateY(-100px)';
                 setTimeout(function () {
-                    dino.style.animation = '';
+                    dino.style.transform = '';
                 }, 500);
             }
         }
